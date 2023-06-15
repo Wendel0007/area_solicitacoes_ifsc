@@ -1,0 +1,46 @@
+{% extends 'dashboard/auth/base.html' %}
+{% load static %}
+{% block title %}Login - IFSC{% endblock title %}
+
+{% block conteudo %}
+<div class="container mt-2 pt-2 mt-lg-3 pt-lg-3">
+    <div class="row">
+        <div class="col-md-6 mx-auto mt-3 shadow p-0 p-md-5">
+            
+                <div class="text-center mb-3">
+                    <img class="img-fluid" width="150px" src="{% static 'painel_controle/img/logo_ifsc.png' %}" />
+                </div>
+                <h6 class="fw-bold text-center">Informe seus dados cadastrais</h6>
+
+                <form action="{% url 'cadastro_action' %}" method="POST" enctype='multipart/form-data'>
+                    {% csrf_token %}
+                    <div class="col-md-12">
+                        <div class="form-floating mb-3">
+                            <input class="form-control" type="text" name="username" id="username" placeholder="Usuário" oninput="this.value = this.value.toLowerCase();">
+                            <label for="username" class="form-label">Seu usuário</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input class="form-control" type="text" name="email" id="email" placeholder="Email">
+                            <label for="email" class="form-label">Seu email</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input class="form-control" type="password" name="password1" id="password1" placeholder="Senha">
+                            <label for="password1" class="form-label">Seu senha</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input class="form-control" type="password" name="password2" id="password2" placeholder="Repida a senha" >
+                            <label for="password2" class="form-label">Repita sua senha</label>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 text-center mt-3 mb-3">
+                        <button type="submit" class="btn btn-dark btn-block button_main">Cadastrar</button>
+                        <a class="btn btn-outline-secondary btn-block" href="https://www.ifsc.edu.br/web/campus-cacador">Voltar ao site</a>
+                        <a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{% url 'login_form' %}">Já tem acesso?</a>
+                    </div>
+                </form>
+
+        </div>
+    </div>
+</div>
+{% endblock conteudo %}

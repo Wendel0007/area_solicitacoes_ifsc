@@ -1,0 +1,48 @@
+{% load static %}
+<nav class="bg-light fixed-top shadow">
+    <div class="container">
+        <header class="d-flex flex-wrap align-items-center justify-content-between py-3  bg-light">
+            <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-decoration-none">
+                <img src="{% static 'painel_controle/img/logo_ifsc.png' %}" alt="" class="img-fluid img-fluid px-2" width="150px" height="auto">
+            </a>
+                <button class="btn btn-outline-success bi bi-list" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                  Menu</button>
+                  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                      <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Olá {{ user }}</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                      <ul class="list-group">
+                        <li class="list-group-item list-group-item-action">
+                          <a class="nav-link bi bi-house" aria-current="page" href="https://www.ifsc.edu.br/web/campus-cacador" target="_blank"> Site Instituto</a>
+                        </li>
+                        <li class="list-group-item list-group-item-action dropdown">
+                          <a class="nav-link dropdown-toggle bi bi-gear" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Configurações da conta
+                          </a>
+                          <ul class="dropdown-menu text-small">
+                            <li><a class="dropdown-item bi bi-key" href="{% url 'altera_senha' %}"> Alterar Senha</a></li>
+                            <li>
+                              <hr class="dropdown-divider">
+                          </li>
+                            <li><a class="dropdown-item bi bi-exclamation" href="#ajuda"> Ajuda</a></li>
+                        </ul>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li class="list-group-item list-group-item-action bg-warning">
+                          <a class="dropdown-item bi bi-arrow-return-right" href="{% url 'logout_action'%}"> Sair</a>
+                        </li>
+                        {% endif %}
+                        <li class="list-group my-2">
+                          <hr class="dropdown-divider">
+                        </li>
+                        <li class="list-group-item list-group-item-action">
+                            <a class="nav-link bi bi-shop-window" href="{% url 'painel_cantina' %}"> Painel Cantina</a>
+                        </li>
+                        
+                    </div>
+            </div>
+        </header>
+    </div>
+</nav>

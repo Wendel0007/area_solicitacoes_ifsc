@@ -1,0 +1,35 @@
+{% extends 'dashboard/auth/base.html' %}
+{% load static %}
+{% block title %}Alterar senha de acesso - IFSC{% endblock title %}
+
+{% block conteudo %}
+<div class="container mt-2 pt-2 mt-lg-3 pt-lg-3">
+    <div class="row">
+        <div class="col-md-6 mx-auto mt-3 shadow p-0 p-md-5">
+                <div class="text-center mb-3">
+                    <img class="img-fluid" width="100px" src="{% static 'painel_controle/img/logo_ifsc.png' %}" />
+                </div>
+                <h6 class="fw-bold text-center">Formuário de alteração de senha de acesso.</h6>
+
+                <form action="{% url 'altera_senha' %}" method="POST" enctype='multipart/form-data'>
+                    {% csrf_token %}
+                    <div class="col-md-12">
+                        {% for field in form %}
+                        <div class="form-floating mb-2">
+                            {{field}}
+                            <label for="{{field.id_for_label}}" class="form-label">{{field.label}}</label>
+                        </div>
+                        {{field.errors}}
+                        {% endfor %}
+                    </div>
+
+                    <div class="d-grid gap-2 text-center mt-3 mb-3">
+                        <button type="submit" class="btn btn-dark btn-block">Alterar</button>
+                        <a class="btn btn-outline-secondary btn-block" href="{% url 'dashboard' %}">Voltar Home</a>
+                    </div>
+                </form>
+
+        </div>
+    </div>
+</div>
+{% endblock conteudo %}

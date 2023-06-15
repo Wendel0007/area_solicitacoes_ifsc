@@ -1,0 +1,44 @@
+{% extends 'dashboard/components/base.html' %}
+{% load static %}
+
+{% block title %}IFSC Caçador - Novo Produto Cantina{% endblock title %}
+
+{% block conteudo %}
+<main class="pt-5">
+    <section class="mt-5" id="home">
+        <div class="container mt-5">
+            <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">IFSC Caçador</li>
+                <li class="breadcrumb-item">
+                  <a class="text-success" href="{% url 'dashboard' %}">Painel</a>
+                </li>
+                <li class="breadcrumb-item">
+                  <a class="text-success" href="{% url 'painel_cantina' %}">Painel Cantina</a>
+                </li>
+                <li class="breadcrumb-item">
+                  <a class="text-success" href="#">Novo Produto Cantina</a>
+                </li>
+              </ol>
+            </nav>
+            <div class="row row-cols-1">
+              <div class="col mt-3">
+                <h4 class="text-center fw-bold">Novo Produto Cantina</h4>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="form-floating mb-3">
+                        {{field}}
+                        <label class="" for="{{field.label}}">{{field.label}}</label>
+                        </div>
+                    {% endfor %}
+                    <div class="d-grid gap-2 col mx-auto">
+                        <button type="submit" class="btn btn-success">Cadastrar</button>
+                    </div>
+                  </form>
+              </div>
+            </div>
+        </div>
+    </section>
+  </main>
+{% endblock conteudo %}

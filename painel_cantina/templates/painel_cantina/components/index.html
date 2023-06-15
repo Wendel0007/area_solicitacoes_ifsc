@@ -1,0 +1,33 @@
+{% extends 'painel_cantina/components/base.html' %}
+{% load static %}
+
+{% block title %}IFSC Caçador - Painel Cantina{% endblock title %}
+
+{% block conteudo %}
+<main class="pt-5">
+    <section class="mt-5" id="home">
+        <div class="container mt-5">
+            <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">IFSC Caçador</li>
+                <li class="breadcrumb-item">
+                  <a class="text-success" href="{% url 'dashboard' %}">Painel</a>
+                </li>
+                <li class="breadcrumb-item">
+                  <a class="text-success" href="#">Painel Cantina</a>
+                </li>
+              </ol>
+            </nav>
+            <div class="row row-cols-1">
+              <div class="col mt-3">
+                <h4 class="text-center fw-bold">Painel Cantina</h4>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  <a class="btn btn-primary" href="{% url 'novo_produto_cantina' %}">Novo Produto</a>
+                  <a class="btn btn-warning" href="{% url 'listar_produto_cantina' %}">Listar Produtos</a>
+                </div>
+              </div>
+            </div>
+        </div>
+    </section>
+  </main>
+{% endblock conteudo %}
