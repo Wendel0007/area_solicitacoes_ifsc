@@ -78,3 +78,10 @@ def DeletarProdutoCantina(request, id):
     produto.delete()
     messages.success(request, 'Produto deletado com sucesso')
     return redirect('listar_produto_cantina')
+
+
+@login_required
+def painelPedidoscantina(request):
+    if request.method == 'GET':
+        produtos = ProdutosCantina.objects.all()
+        return render(request, 'painel_cantina/solicitacoes_cantina/solicitar_cantina.html', {'produtos': produtos})

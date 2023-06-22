@@ -1,0 +1,53 @@
+{% extends 'dashboard/components/base.html' %}
+{% load static %}
+
+{% block title %}IFSC Caçador - Lista Produtos Cantina{% endblock title %}
+
+{% block conteudo %}
+<main class="pt-5">
+    <section class="mt-5" id="home">
+        <div class="container mt-5">
+            <nav class="my-5" style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">IFSC Caçador</li>
+                <li class="breadcrumb-item">
+                  <a class="text-success" href="{% url 'dashboard' %}">Painel</a>
+                </li>
+                <li class="breadcrumb-item">
+                  <a class="text-success" href="#">Produtos Cantina</a>
+                </li>
+              </ol>
+            </nav>
+            <h4 class="text-center fw-bold my-3">Produtos Cantina</h4>
+            <div class="row row-cols-1 row-cols-lg-4 ">
+                {% for produto in produtos %}
+                <div class="col my-2">
+                    <div class="card border border-1 {% if produto.status %} border-success {% else %} border-danger {% endif %}">
+                        {% if produto.imagem %}
+                            <img src="{{ produto.imagem.url }}" class="card-img-top" alt="Imagem {{ produto.titulo }}">
+                        {% else %}
+                            <p>Nenhuma imagem disponível</p>
+                        {% endif   %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ produto.titulo }}</h5>
+                            <h6 class="card-subtitle mb-2 text-body-secondary">R${{ produto.valor }}</h6>
+                            <p class="card-text">{{ produto.descricao }}</p>
+                            <p class="card-text">
+                                <small class="text-body-secondary">
+                                    Ativado/Desativado:
+                                    {% if produto.status %}
+                                        <span class="text-success fw-bold">Ativado</span>
+                                    {% else %}
+                                        <span class="text-danger fw-bold">Desativado</span>
+                                    {% endif %}
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+  </main>
+{% endblock conteudo %}

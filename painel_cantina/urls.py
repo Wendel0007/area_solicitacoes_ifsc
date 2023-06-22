@@ -16,4 +16,7 @@ urlpatterns = [
 
     path('listar_produto_cantina/deletar_produto/<int:id>', views.DeletarProdutoCantina,
          name='deletar_produto'),
+
+    path('pedidos_cantina', views.painelPedidoscantina,
+         name='pedidos_cantina'),
 ]
