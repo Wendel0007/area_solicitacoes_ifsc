@@ -62,7 +62,7 @@ class CadastroUsuarioTeste(TestCase):
         print('Email: ', user.email)
         print('\n -- Apagando a BASE de Teste -- \n')
 
-# Classe de teste chamada CadastroUsuarioTeste, que herda da classe TestCase do Django, usada para testar funcionalidades do Django.
+# classe de teste chamada CadastroUsuarioTeste, que herda da classe TestCase do Django, usada para testar funcionalidades do Django.
 
 # Dentro dessa classe, há um método de teste chamado test_cadastro_usuario. Esse método é responsável por testar o cadastro de um novo usuário no sistema.
 
