@@ -1,6 +1,16 @@
 # Configurações do VSCode
 .vscode/
 
+# Log's
+logs
+.logs/
+logs/
+
+
+# Media
+.uploads/
+uploads/
+uploads
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

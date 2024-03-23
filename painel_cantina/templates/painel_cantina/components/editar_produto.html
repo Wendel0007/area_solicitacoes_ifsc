@@ -28,10 +28,14 @@
 
                     {% csrf_token %}
                     {% for field in formulario %}
+                      {% if field.imagem %}
+                      
+                      {% else %}
                         <div class="form-floating mb-3">
-                        {{field}}
-                        <label class="" for="{{field.label}}">{{field.label}}</label>
+                          {{field}}
+                          <label class="" for="{{field.label}}">{{field.label}}</label>
                         </div>
+                      {% endif %}
                     {% endfor %}
                     <div class="d-grid gap-2 col mx-auto">
                         <button type="submit" class="btn btn-success">Salvar</button>

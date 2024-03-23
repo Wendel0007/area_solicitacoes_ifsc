@@ -2,6 +2,9 @@ import os
 from pathlib import Path
 
 from django.contrib.messages import constants
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -16,7 +19,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'INSECURE')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if os.environ.get('DEBUG') == '1' else False
 
-ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOSTS')]
+ALLOWED_HOSTS = [os.environ.get(
+    'ALLOWED_HOSTS'), 'localhost', '127.0.0.1']
+CSRF_TRUSTED_ORIGINS = [os.environ.get('CSRF_TRUSTED_ORIGINS')]
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = None
 
 
 # Application definition
@@ -30,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'painel_controle',
     'painel_cantina',
+    'solicitacoes',
 ]
 
 MIDDLEWARE = [
@@ -42,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'area_restrita.urls'
+ROOT_URLCONF = 'portal_interno_ifsc.urls'
 
 TEMPLATES = [
     {
@@ -60,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'area_restrita.wsgi.application'
+WSGI_APPLICATION = 'portal_interno_ifsc.wsgi.application'
 
 
 # Database
@@ -74,6 +82,7 @@ DATABASES = {
         'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
         'HOST': os.environ.get('DATABASE_HOST'),
         'PORT': os.environ.get('DATABASE_PORT'),
+        'CONN_MAX_AGE': int(os.environ.get('DATABASE_CONN_MAX_AGE')),
     }
 }
 
@@ -104,6 +113,36 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+# Caminho para o diretório de log
+LOG_DIR = os.path.join(BASE_DIR, 'logs')
+
+
+# Verifique se o diretório de log existe, caso contrário, crie-o
+if not os.path.exists(LOG_DIR):
+    os.makedirs(LOG_DIR)
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': f'{LOG_DIR}/debug.log',
+        },
+        'error_file': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': f'{LOG_DIR}/error.log',
+        },
+    },
+    'root': {
+        'handlers': ['file', 'error_file'],
+        'level': 'DEBUG',
+    },
+}
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -123,17 +162,17 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 # Arquivos de Media/upload
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
 MEDIA_URL = "/uploads/"
+
 DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MESSAGE_TAGS = {
     constants.SUCCESS: 'success',
@@ -146,3 +185,19 @@ MESSAGE_TAGS = {
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGOUT_REDIRECT_URL = 'login_form'
 LOGIN_URL = 'login_form'
+
+
+# # Email settings
+# EMAIL_BACKEND = os.getenv("EMAIL_BACKEND")
+# EMAIL_HOST = os.getenv("EMAIL_HOST")
+# EMAIL_HOST_PORT = os.getenv("EMAIL_HOST_PORT")
+# EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS")
+# EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+# EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'wendel0428@gmail.com'
+EMAIL_HOST_PASSWORD = 'eawn jvtt oywh owst'

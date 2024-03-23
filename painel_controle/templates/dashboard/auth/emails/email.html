@@ -1,0 +1,108 @@
+{% load static %} 
+<!DOCTYPE html>
+<head>
+    <style>
+      /* Define um estilo para o corpo do e-mail */
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 12;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+      }
+
+      .main-body {
+        background-color: #272727;
+        padding: 3rem 1rem 3rem 1rem;
+        text-align: center;
+      }
+
+      /* Define um estilo para o cabeçalho do e-mail */
+      .header {
+        background-color: #fff;
+        color: black;
+        padding: 10px;
+      }
+
+      /* Define um estilo para o conteúdo principal do e-mail */
+      .main {
+        background-color: #fff;
+        padding: 1rem;
+        text-align: center;
+      }
+
+      .table_info {
+        min-width: 90%;
+        text-align: center;
+        align-items: center;
+        margin-left: 5%;
+      }
+
+      /* Define um estilo para o rodapé do e-mail */
+      .footer {
+        background-color: #f2f2f2;
+        color: white;
+        padding: 0 0 0 0;
+        display: flex;
+        justify-content: center;
+      }
+
+      table,
+      td {
+        border: 1px solid #333;
+      }
+
+      th,
+      td {
+        height: 4rem;
+      }
+    </style>
+</head>
+
+<body>
+    <!-- Cabeçalho do e-mail -->
+    <div class="main-body">
+        <div class="header">
+            <img
+            src="https://www.ifsc.edu.br/image/layout_set_logo?img_id=902745&t=1711047327149"
+            alt=""
+            width="100px"
+            height="auto" />
+            <h2>Portal IFSC - Campus Caçador</h2>
+        </div>
+
+        <div class="main">
+            <p>
+                {{mensagem}}
+            </p>
+        </div>
+
+        <div class="footer">
+            <ul style="list-style-type: none; display: flex">
+                <li style="margin-right: 10px">
+                    <a href="https://www.ifsc.edu.br/" target="_blank"
+                    >Site Oficial</a
+                    >
+                </li>
+                <li style="margin-right: 10px">
+                    <a
+                    href="https://www.ifsc.edu.br/web/campus-cacador/"
+                    target="_blank"
+                    >Campus Caçador</a
+                    >
+                </li>
+            </ul>
+        </div>
+        <p style="color: #7d7d7d; text-align: center; font-size: 8px; margin-top: 3rem">
+            Importante: esta mensagem (e os anexos) é destinada apenas ao(s)
+            indivíduo(s) ou entidade(s) acima identificado(s), podendo conter
+            informações que sejam sigilosas e/ou confidenciais. Informamos que
+            qualquer divulgação, disseminação, distribuição ou cópia desta mensagem
+            é estritamente proibida. Caso V.S.ª. tenha recebido esta mensagem por
+            engano, pedimos a gentileza de prontamente contatar o remetente da
+            mesma, conforme acima especificado, eliminando-a de qualquer equipamento
+            onde esta mensagem possa ser encontrada.
+        </p>
+    </div>
+  </body>
+</html>

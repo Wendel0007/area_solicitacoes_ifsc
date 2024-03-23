@@ -12,23 +12,70 @@
                 </div>
                 <h6 class="fw-bold text-center">Informe seus dados cadastrais</h6>
 
-                <form action="{% url 'cadastro_action' %}" method="POST" enctype='multipart/form-data'>
+                <form class="row" action="{% url 'cadastro_action' %}" method="POST" enctype='multipart/form-data'>
                     {% csrf_token %}
-                    <div class="col-md-12">
+                    <div class="col-12 col-lg-12">
                         <div class="form-floating mb-3">
-                            <input class="form-control" type="text" name="username" id="username" placeholder="Usuário" oninput="this.value = this.value.toLowerCase();">
+                            <input class="form-control" type="text" required name="nome_completo" id="nome_completo" placeholder="Usuário">
+                            <label for="nome_completo" class="form-label">Seu nome completo</label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-floating mb-3">
+                            <input class="form-control" type="text" pattern="[0-9]*" title="Informe o número de CPF" required minlength="11" maxlength="11" name="cpf" id="cpf" placeholder="cpf">
+                            <label for="cpf" class="form-label">Seu CPF</label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-floating mb-3">
+                            <input class="form-control" type="text" pattern="[0-9]*" title="Informe o número de Matricula" required minlength="12" maxlength="12" name="matricula" id="matricula" placeholder="matricula">
+                            <label for="matricula" class="form-label">Sua matricula</label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-floating mb-3">
+                            <input class="form-control" type="text" required name="email_inicial" id="email_inicial" placeholder="email_inicial">
+                            <label for="email_inicial" class="form-label">Seu email</label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-floating mb-3">
+                            <input class="form-control" type="text" required value="@aluno.ifsc.edu.br" name="dominio" id="dominio" placeholder="dominio">
+                            <label for="dominio" class="form-label">Dominio</label>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-12">
+                        <div class="form-floating mb-3">
+                            <select class="form-select" id="curso" required name="curso" aria-label="Floating label select example">
+                              <option disabled selected>Selecione seu curso</option>
+                              {% if cursos %}
+                                {% for curso in cursos %}
+                                    <option value="{{curso.id}}">{{curso.tipo_curso}} - {{curso.nome_completo}}</option>
+                                {% endfor %}
+                              {% endif %}
+                            </select>
+                            <label for="curso">Curso</label>
+                        </div>
+                    </div>
+
+                    <h6 class="fw-bold text-center">Cadastro de acesso</h6>
+
+                    <div class="col-12 col-lg-12">
+                        <div class="form-floating mb-3">
+                            <input class="form-control" type="text" required name="username" id="username" placeholder="Usuário" oninput="this.value = this.value.toLowerCase();">
                             <label for="username" class="form-label">Seu usuário</label>
                         </div>
+                    </div>
+                    <div class="col-12 col-lg-12">
                         <div class="form-floating mb-3">
-                            <input class="form-control" type="text" name="email" id="email" placeholder="Email">
-                            <label for="email" class="form-label">Seu email</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input class="form-control" type="password" name="password1" id="password1" placeholder="Senha">
+                            <input class="form-control" type="password" required name="password1" id="password1" placeholder="Senha">
                             <label for="password1" class="form-label">Seu senha</label>
                         </div>
+                    </div>
+                    <div class="col-12 col-lg-12">
                         <div class="form-floating mb-3">
-                            <input class="form-control" type="password" name="password2" id="password2" placeholder="Repida a senha" >
+                            <input class="form-control" type="password" required name="password2" id="password2" placeholder="Repida a senha" >
                             <label for="password2" class="form-label">Repita sua senha</label>
                         </div>
                     </div>
