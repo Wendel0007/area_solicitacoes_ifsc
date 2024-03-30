@@ -10,7 +10,7 @@ from .models import Perfil
 class PerfilForm(forms.ModelForm):
     class Meta:
         model = Perfil
-        fields = ['nome_completo', 'cpf', 'matricula', 'curso']
+        fields = ['nome_completo', 'cpf', 'matricula', 'numero_contato', 'curso']
 
 
 class PasswordChangeCustomForm(PasswordChangeForm):

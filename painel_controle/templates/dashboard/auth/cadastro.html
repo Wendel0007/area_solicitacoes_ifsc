@@ -16,7 +16,7 @@
                     {% csrf_token %}
                     <div class="col-12 col-lg-12">
                         <div class="form-floating mb-3">
-                            <input class="form-control" type="text" required name="nome_completo" id="nome_completo" placeholder="Usuário">
+                            <input class="form-control" type="text" required name="nome_completo" id="nome_completo" placeholder="Seu nome completo">
                             <label for="nome_completo" class="form-label">Seu nome completo</label>
                         </div>
                     </div>
@@ -32,6 +32,12 @@
                             <label for="matricula" class="form-label">Sua matricula</label>
                         </div>
                     </div>
+                    <div class="col-12 col-lg-12">
+                        <div class="form-floating mb-3">
+                            <input class="form-control" type="text" required pattern="[0-9]*" minlength="11" maxlength="11" name="numero_contato" id="numero_contato" placeholder="Seu Número de contato (WhatsApp)">
+                            <label for="numero_contato" class="form-label">Seu Número de contato (WhatsApp)</label>
+                        </div>
+                    </div>
                     <div class="col-6">
                         <div class="form-floating mb-3">
                             <input class="form-control" type="text" required name="email_inicial" id="email_inicial" placeholder="email_inicial">
@@ -40,8 +46,11 @@
                     </div>
                     <div class="col-6">
                         <div class="form-floating mb-3">
-                            <input class="form-control" type="text" required value="@aluno.ifsc.edu.br" name="dominio" id="dominio" placeholder="dominio">
-                            <label for="dominio" class="form-label">Dominio</label>
+                            <select class="form-select" name="dominio" id="dominio" aria-label="Dominio Email" required>
+                                <option value="@aluno.ifsc.edu.br">@aluno.ifsc.edu.br</option>
+                                <option value="@ifsc.edu.br">@ifsc.edu.br</option>
+                              </select>
+                            <label for="dominio">Dominio</label>
                         </div>
                     </div>
 

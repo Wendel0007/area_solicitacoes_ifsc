@@ -22,6 +22,8 @@ class Perfil(models.Model):
                            verbose_name="CPF")
     matricula = models.CharField(max_length=12, null=True,
                                  verbose_name="Matricula de estudante")
+    numero_contato = models.CharField(max_length=11, null=True,
+                                 verbose_name="Número para Contato")
 
     curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
 

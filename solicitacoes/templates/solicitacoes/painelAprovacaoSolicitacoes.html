@@ -1,6 +1,6 @@
 {% extends 'solicitacoes/base.html' %}
 
-{% block title %}IFSC Caçador - Painel de Solicitações{% endblock title %}
+{% block title %}IFSC Caçador - Painel de Aprovação de Solicitações{% endblock title %}
 
 {% block conteudo %}
 {% load static %}
@@ -15,7 +15,7 @@
                   {{ user }}
                 </li>
                 <li class="breadcrumb-item">
-                  Painel de Solicitações
+                  Painel de Aprovação de Solicitações
                 </li>
               </ol>
             </nav>
@@ -25,31 +25,34 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h4 class="text-center fw-bold my-3">Painel de Solicitações</h4>
+                    <h4 class="text-center fw-bold my-3">Painel de Aprovação de Solicitações</h4>
                     <p class="text-center text-muted">
-                        Envio de solicitações
+                        Aprovação de Solicitações
                     </p>
                 </div>
-                <div class="col-12 d-grid gap-2 d-md-flex justify-content-md-end mb-3">
-                  <a class="btn btn-primary me-md-2" href="{% url 'novaSolicitacao' %}">Nova Solicitação</a>
-                  <a class="btn btn-warning me-md-2" href="{% url 'painelAprovacaoSolicitacoes' %}">Painel Aprovação de Solicitação</a>
-                </div>
-                {% if solicitacoesUser %}
+                {% if solicitacoes %}
                 <div class="col-12 table-responsive">
-                  <table class="table">
+                  <table class="table text-center">
                     <thead>
                       <tr>
                         <th>Tipo</th>
+                        <th>Matricula</th>
                         <th>Status</th>
                         <th>Data</th>
+                        <th>Opções</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {% for solicitacao in solicitacoesUser %}
+                      {% for solicitacao in solicitacoes %}
                       <tr>
-                        <td>{{solicitacao.tipo_solicitacao.nome_completo}}</td>
+                        <td class="text-start">{{solicitacao.tipo_solicitacao.nome_completo}}</td>
+                        <td>{{solicitacao.user.perfil.matricula}}</td>
                         <td>{{solicitacao.status}}</td>
                         <td>{{solicitacao.data_cadastro}}</td>
+                        <td>
+                            <a class="btn btn-outline-info bi bi-pencil-square" href="{% url 'aprovacaoSolicitacao' id=solicitacao.id %}"></a>
+                            <a class="btn btn-outline-danger bi bi-trash" href="{% url 'deletarSolicitacao' id=solicitacao.id %}" onclick="confirm('Deseja relmente excluir a solicitação?');"></a>
+                        </td>
                       </tr>
                       {% endfor %}
                     </tbody>
