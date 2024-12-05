@@ -105,7 +105,7 @@ def registerUser(request):
             messages.error(
                 request, "Usuário informado contém algum problema ou já existe.")
             if not formUser.is_valid():
-                print(formUser.errors)  # Exibir erros do UserRegistrationForm
+                print(formUser.errors)
             return redirect('login_form')
 
 
